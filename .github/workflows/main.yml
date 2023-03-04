@@ -5,14 +5,15 @@ on:
 jobs:
   build:
     name: Build on master
-    uses: nodejs@19.0.0
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node_version: ['12']
         os: [ubuntu-latest]
     steps:
+    - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node_version }}
     - name: npm install and build
