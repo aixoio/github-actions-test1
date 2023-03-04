@@ -5,6 +5,7 @@ on:
 jobs:
   build:
     name: Build on master
+    uses: nodejs-19
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
