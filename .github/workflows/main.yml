@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build:
+    name: Build on master
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: ['8', '10', '12']
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node_version }}
+    - name: npm install and build
+      run: |
+        npm install
+        npm run build
